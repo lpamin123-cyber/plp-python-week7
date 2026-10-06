@@ -1,45 +1,48 @@
-# Stage 2: Shopping List Manager
+# Part B — Shopping List Manager
 
+# Start with an empty list
 shopping_list = []
 
-def show_menu():
-    print("\n--- SHOPPING LIST MANAGER ---")
-    print("1. View List")
-    print("2. Add Item")
-    print("3. Remove Item")
-    print("4. Exit")
-
 while True:
-    show_menu()
-    choice = input("Choose an option (1-4): ").strip()
-    
-    if choice == "1":
-        if not shopping_list:
-            print("\nYour shopping list is empty.")
+    print("\n--- Shopping List Manager ---")
+    action = input("Choose an action (add / remove / show / done): ").strip().lower()
+
+    if action == "add":
+        item = input("Enter item to add: ").strip()
+        if item:
+            shopping_list.append(item)
+            print(f"'{item}' added to the list.")
         else:
-            print("\nYour Current Shopping List:")
-            for index, item in enumerate(shopping_list, start=1):
-                print(f"{index}. {item}")
-                
-    elif choice == "2":
-        new_item = input("\nEnter the item to add: ").strip()
-        if new_item:
-            shopping_list.append(new_item)
-            print(f"'{new_item}' has been added.")
-        else:
-            print("Item name cannot be empty.")
-            
-    elif choice == "3":
-        remove_item = input("\nEnter the item to remove: ").strip()
-        # Checking membership before removing
-        if remove_item in shopping_list:
-            shopping_list.remove(remove_item)
-            print(f"'{remove_item}' has been removed.")
-        else:
-            print(f"'{remove_item}' was not found in your list.")
-            
-    elif choice == "4":
-        print("\nExiting Shopping List Manager. Goodbye!")
-        break
-    else:
-        print("Invalid choice. Please enter a number from 1 to 4.")
+            print("Item cannot be empty.")
+
+cat << 'EOF' > list_report.py
+# Part C — List Report
+
+items = ["bread", "avocado", "milk", "sweet potatoes", "tea"]
+
+# 1. Loop through the list and print each item numbered
+print("--- Numbered Shopping Items ---")
+for index, item in enumerate(items, start=1):
+    print(f"{index}. {item}")
+
+# 2. Count how many item names have more than 4 letters
+long_name_count = 0
+for item in items:
+
+python list_warmup.py
+python shopping_list.py
+python list_report.py
+cat << 'EOF' > README.md
+# Week 7 Assignment: Shopping List Manager
+
+## Overview
+This repository contains Python programs developed for the PLP Python Week 7 assignment, covering basic list operations, interactive input management, and procedural data analysis.
+
+## Files Description
+* `list_warmup.py`: Demonstrates basic list operations including index access, `.append()`, `.remove()`, and `len()`.
+* `shopping_list.py`: An interactive CLI tool to manage a shopping list supporting addition, safe removal, and display functions.
+* `list_report.py`: Analyzes a list of items to format a numbered output, count items based on string length, and identify the longest item name using a comparative loop.
+* `screenshots/`: Contains execution output screenshots for each script.
+
+## Safety Reflection: Checking Membership with `in`
+It is safer to check `if item in list:` before calling `.remove()` because calling `.remove()` on an item that does not exist raises a `ValueError` in Python, which crashes the program. Checking membership beforehand guarantees safe handling of missing items and prevents execution errors, ensuring a smooth user experience.

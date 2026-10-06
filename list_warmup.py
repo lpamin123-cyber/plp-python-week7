@@ -1,22 +1,19 @@
-# Stage 1: List Operations Warmup
+# Part A — List Warmup
 
-# Create an initial list
-items = ["apples", "bread", "milk"]
-print("Initial list:", items)
+# 1. Create a list called fruits containing four fruits
+fruits = ["apple", "banana", "mango", "orange"]
 
-# Accessing items by index
-print("First item:", items[0])
-print("Last item:", items[-1])
+# 2. Print the first and the last item using indexes
+print(f"First fruit: {fruits[0]}")
+print(f"Last fruit: {fruits[-1]}")
 
-# Growing the list using .append()
-items.append("eggs")
-items.append("cheese")
-print("After appending eggs and cheese:", items)
+# 3. .append() a fifth fruit, then print the whole list
+fruits.append("pineapple")
+print(f"List after adding a fruit: {fruits}")
 
-# Shrinking the list using .remove() safely with 'in'
-item_to_remove = "bread"
-if item_to_remove in items:
-    items.remove(item_to_remove)
-    print(f"Removed '{item_to_remove}' successfully.")
+# 4. .remove() one fruit, then print the list again
+fruits.remove("banana")
+print(f"List after removing banana: {fruits}")
 
-print("Final list after warmup:", items)
+# 5. Print how many fruits remain using len()
+print(f"Remaining fruits count: {len(fruits)}")
